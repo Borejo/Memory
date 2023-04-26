@@ -1,0 +1,10 @@
+C:\Users\TEMP.VLO-30-07.000\Desktop\Memory_game\Memory_game\bin\Debug\Memory_game.exe.config
+C:\Users\TEMP.VLO-30-07.000\Desktop\Memory_game\Memory_game\bin\Debug\Memory_game.exe
+C:\Users\TEMP.VLO-30-07.000\Desktop\Memory_game\Memory_game\bin\Debug\Memory_game.pdb
+C:\Users\TEMP.VLO-30-07.000\Desktop\Memory_game\Memory_game\obj\Debug\Memory_game.csproj.AssemblyReference.cache
+C:\Users\TEMP.VLO-30-07.000\Desktop\Memory_game\Memory_game\obj\Debug\Memory_game.Form1.resources
+C:\Users\TEMP.VLO-30-07.000\Desktop\Memory_game\Memory_game\obj\Debug\Memory_game.Properties.Resources.resources
+C:\Users\TEMP.VLO-30-07.000\Desktop\Memory_game\Memory_game\obj\Debug\Memory_game.csproj.GenerateResource.cache
+C:\Users\TEMP.VLO-30-07.000\Desktop\Memory_game\Memory_game\obj\Debug\Memory_game.csproj.CoreCompileInputs.cache
+C:\Users\TEMP.VLO-30-07.000\Desktop\Memory_game\Memory_game\obj\Debug\Memory_game.exe
+C:\Users\TEMP.VLO-30-07.000\Desktop\Memory_game\Memory_game\obj\Debug\Memory_game.pdb
