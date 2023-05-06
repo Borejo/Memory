@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,33 +14,32 @@ namespace Memory_game
 {
     public partial class Form1 : Form
     {
-        // firstClicked points to the first Label control 
-        // that the player clicks, but it will be null 
-        // if the player hasn't clicked a label yet
+        
+        bool firstClick;
+        Random random = new Random();
+        Stopwatch timing  = new Stopwatch();
+        string path = null;
+        
         Label firstClicked = null;
 
-        // secondClicked points to the second Label control 
-        // that the player clicks
         Label secondClicked = null;
         public Form1()
         {
             InitializeComponent();
             AssignIconsToSquares();
         }
-        Random random = new Random();
-
-        List<string> icons = new List<string>()
-        {
-            "!", "!", "N", "N", ",", ",", "k", "k",
-            "b", "b", "v", "v", "w", "w", "z", "z"
-        };
+        
 
         private void AssignIconsToSquares()
         {
-            // The TableLayoutPanel has 16 labels,
-            // and the icon list has 16 icons,
-            // so an icon is pulled at random from the list
-            // and added to each label
+            firstClick = false;
+
+            List<string> icons = new List<string>()
+            {
+                "!", "!", "N", "N", ",", ",", "k", "k",
+                "b", "b", "v", "v", "w", "w", "z", "z"
+            };
+            
             foreach (Control control in tableLayoutPanel1.Controls)
             {
                 Label iconLabel = control as Label;
@@ -54,9 +55,12 @@ namespace Memory_game
 
         private void label1_Click(object sender, EventArgs e)
         {
-            // The timer is only on after two non-matching 
-            // icons have been shown to the player, 
-            // so ignore any clicks if the timer is running
+            if(firstClick == false)
+            {
+                timing.Restart();
+                firstClick = true;
+            }
+            
             if (timer1.Enabled == true)
                 return;
 
@@ -64,16 +68,9 @@ namespace Memory_game
 
             if (clickedLabel != null)
             {
-                // If the clicked label is black, the player clicked
-                // an icon that's already been revealed --
-                // ignore the click
                 if (clickedLabel.ForeColor == Color.Black)         
                     return;
 
-                // If firstClicked is null, this is the first icon
-                // in the pair that the player clicked, 
-                // so set firstClicked to the label that the player 
-                // clicked, change its color to black, and return
                 if (firstClicked == null)
                 {
                     firstClicked = clickedLabel;
@@ -81,10 +78,6 @@ namespace Memory_game
                     return;
                 }
 
-                // If the player gets this far, the timer isn't
-                // running and firstClicked isn't null,
-                // so this must be the second icon the player clicked
-                // Set its color to black
                 secondClicked = clickedLabel;
                 secondClicked.ForeColor = Color.Black;
 
@@ -96,10 +89,7 @@ namespace Memory_game
                     secondClicked = null;
                     return;
                 }
-                // If the player gets this far, the player 
-                // clicked two different icons, so start the 
-                // timer (which will wait three quarters of 
-                // a second, and then hide the icons)
+                
                 timer1.Start();
             }
         }
@@ -108,21 +98,45 @@ namespace Memory_game
         {
             timer1.Stop();
 
-            // Hide both icons
             firstClicked.ForeColor = firstClicked.BackColor;
             secondClicked.ForeColor = secondClicked.BackColor;
 
-            // Reset firstClicked and secondClicked 
-            // so the next time a label is
-            // clicked, the program knows it's the first click
             firstClicked = null;
             secondClicked = null;
 
         }
+
+        private void save()
+        {
+            if (path == null)
+            {
+                richTextBox1.Text = (DateTime.Now.ToString("dddd, dd MMMM yyyy HH: mm") + " - " + timing.Elapsed.ToString());
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    richTextBox1.SaveFile(saveFileDialog1.FileName);
+                    path = saveFileDialog1.FileName.ToString();
+                }
+                richTextBox1.Dispose();
+            }
+            else
+            {
+                try
+                {
+                        richTextBox1.Text = "";
+                        richTextBox1.LoadFile(path);
+                        richTextBox1.Text += ("\n" + DateTime.Now.ToString("dddd, dd MMMM yyyy HH: mm") + " - " + timing.Elapsed.ToString());
+                        richTextBox1.SaveFile(path);
+                        richTextBox1.Dispose() ;
+                }
+                catch
+                {
+                    MessageBox.Show("Program will restart...", "⚠️ Do not delete program files while running! ⚠️", MessageBoxButtons.OK);
+                    Application.Restart();
+                }
+            }
+        }
         private void CheckForWinner()
         {
-            // Go through all of the labels in the TableLayoutPanel, 
-            // checking each one to see if its icon is matched
             foreach (Control control in tableLayoutPanel1.Controls)
             {
                 Label iconLabel = control as Label;
@@ -134,12 +148,58 @@ namespace Memory_game
                 }
             }
 
-            // If the loop didn’t return, it didn't find
-            // any unmatched icons
-            // That means the user won. Show a message and close the form
-            MessageBox.Show("You matched all the icons!", "Congratulations");
-            Close();
+            timing.Stop();
+            
+            var response = MessageBox.Show("Your time: " + timing.Elapsed + "\n" + "\n" + "Do you want to save your time?", "Congratulations!", MessageBoxButtons.YesNo);
+            if (response == DialogResult.Yes)
+            {
+                save();
+            }
+            
+            var resp = MessageBox.Show("Do you want to start a new game?", "Again?", MessageBoxButtons.YesNo);
+            if (resp == DialogResult.Yes)
+            {
+                AssignIconsToSquares();
+            }
+            else
+            {
+                Application.Exit();
+            }
         }
+
+        private void opcjeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AssignIconsToSquares();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void showMyResultsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start(path);
+            }
+            
+            catch
+            {
+                MessageBox.Show("You haven't saved any results during this game yet...", "File not found", MessageBoxButtons.OK);
+            }
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(" - Memory game \n - Able to save your time \n - File with results (rtf) resets after every restart of the program \n - Enjoy it!", "©️ Matching game (made by Jan Borejko) ©️", MessageBoxButtons.OK);
+        }
+
     }
     
 }

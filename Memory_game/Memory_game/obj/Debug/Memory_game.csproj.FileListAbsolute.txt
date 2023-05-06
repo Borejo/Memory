@@ -8,3 +8,17 @@ C:\Users\TEMP.VLO-30-07.000\Desktop\Memory_game\Memory_game\obj\Debug\Memory_gam
 C:\Users\TEMP.VLO-30-07.000\Desktop\Memory_game\Memory_game\obj\Debug\Memory_game.csproj.CoreCompileInputs.cache
 C:\Users\TEMP.VLO-30-07.000\Desktop\Memory_game\Memory_game\obj\Debug\Memory_game.exe
 C:\Users\TEMP.VLO-30-07.000\Desktop\Memory_game\Memory_game\obj\Debug\Memory_game.pdb
+C:\Users\Kuba\Source\Repos\Borejo\Memory\Memory_game\Memory_game\bin\Debug\Memory_game.exe.config
+C:\Users\Kuba\Source\Repos\Borejo\Memory\Memory_game\Memory_game\bin\Debug\Memory_game.exe
+C:\Users\Kuba\Source\Repos\Borejo\Memory\Memory_game\Memory_game\bin\Debug\Memory_game.pdb
+C:\Users\Kuba\Source\Repos\Borejo\Memory\Memory_game\Memory_game\obj\Debug\Memory_game.csproj.AssemblyReference.cache
+C:\Users\Kuba\Source\Repos\Borejo\Memory\Memory_game\Memory_game\obj\Debug\Memory_game.csproj.SuggestedBindingRedirects.cache
+C:\Users\Kuba\Source\Repos\Borejo\Memory\Memory_game\Memory_game\obj\Debug\Memory_game.Form1.resources
+C:\Users\Kuba\Source\Repos\Borejo\Memory\Memory_game\Memory_game\obj\Debug\Memory_game.Properties.Resources.resources
+C:\Users\Kuba\Source\Repos\Borejo\Memory\Memory_game\Memory_game\obj\Debug\Memory_game.csproj.GenerateResource.cache
+C:\Users\Kuba\Source\Repos\Borejo\Memory\Memory_game\Memory_game\obj\Debug\Memory_game.csproj.CoreCompileInputs.cache
+C:\Users\Kuba\Source\Repos\Borejo\Memory\Memory_game\Memory_game\obj\Debug\Memory_game.exe
+C:\Users\Kuba\Source\Repos\Borejo\Memory\Memory_game\Memory_game\obj\Debug\Memory_game.pdb
+C:\Users\Kuba\Source\Repos\Borejo\Memory\Memory_game\Memory_game\bin\Debug\en-US\Memory_game.resources.dll
+C:\Users\Kuba\Source\Repos\Borejo\Memory\Memory_game\Memory_game\obj\Debug\Memory_game.Form1.en-US.resources
+C:\Users\Kuba\Source\Repos\Borejo\Memory\Memory_game\Memory_game\obj\Debug\en-US\Memory_game.resources.dll
